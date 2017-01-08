@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Activitat3M8UF1</string>
+    <string name="config">Configuracion</string>
+    <string name="nombre">Introduce un nombre</string>
+    <string name="grupo">Grupo</string>
+    <string name="a1">A1</string>
+    <string name="a2">A2</string>
+    <string name="color">Color de fondo</string>
+    <string-array name="color">
+        <item>Rojo</item>
+        <item>Azul</item>
+        <item>Verde</item>
+        <item>Amarillo</item>
+    </string-array>
+    <string name="guardar">Guardar datos</string>
+    <string name="tipo_letra">Tipo de letra</string>
+    <string-array name="letra">
+        <item>sans-serif</item>
+        <item>italic</item>
+        <item>bold</item>
+    </string-array>
+    <string name="profesor">Profesor</string>
+    <string name="modulo">Modulo</string>
+    <string name="horario_inicio">Hora de inicio</string>
+    <string name="horario_fin">Fin de la clase</string>
+    <string name="horario">Horario</string>
+    <string name="ajustes">Ajustes</string>
+</resources>

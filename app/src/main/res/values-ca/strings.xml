@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Activitat3M8UF1</string>
+    <string name="grupo">Grup</string>
+    <string name="config">Configuracio</string>
+    <string name="nombre">Introdueix un nom</string>
+    <string name="a1">a1</string>
+    <string name="a2">a2</string>
+    <string name="color">Color de fons</string>
+    <string name="guardar">Guardar dades</string>
+    <string name="horario">Horari</string>
+    <string name="modulo">Modul</string>
+    <string name="tipo_letra">Tipus de lletra</string>
+</resources>
