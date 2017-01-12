@@ -18,30 +18,22 @@ public class Config extends AppCompatActivity implements View.OnClickListener {
     RadioButton radioButtonA1, radioButtonA2;
     Spinner spinnerColor, spinnerLetras;
     Button buttonGuardar;
-
+    SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SharedPreferences prefs = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
-        Intent i = new Intent(this, MainActivity.class);
-        System.out.println("hola");
-        if (prefs.getBoolean("Primera", true)) {
-            setContentView(R.layout.config);
-            editTextNombre = (EditText) findViewById(R.id.editTextNombre);
-            radioButtonA1 = (RadioButton) findViewById(R.id.radioButtonA1);
-            radioButtonA2 = (RadioButton) findViewById(R.id.radioButtonA2);
-            spinnerColor = (Spinner) findViewById(R.id.spinnerColor);
-            spinnerLetras = (Spinner) findViewById(R.id.spinnerLetras);
-            buttonGuardar = (Button) findViewById(R.id.buttonGuardar);
-            buttonGuardar.setOnClickListener(this);
-            cargarPreferencias(prefs);
-        } else {
-            startActivity(i);
-            finish();
-        }
+        setContentView(R.layout.config);
+        prefs = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
 
-
+        editTextNombre = (EditText) findViewById(R.id.editTextNombre);
+        radioButtonA1 = (RadioButton) findViewById(R.id.radioButtonA1);
+        radioButtonA2 = (RadioButton) findViewById(R.id.radioButtonA2);
+        spinnerColor = (Spinner) findViewById(R.id.spinnerColor);
+        spinnerLetras = (Spinner) findViewById(R.id.spinnerLetras);
+        buttonGuardar = (Button) findViewById(R.id.buttonGuardar);
+        buttonGuardar.setOnClickListener(this);
+        cargarPreferencias(prefs);
     }
 
     public void cargarPreferencias(SharedPreferences prefs) {
@@ -52,10 +44,8 @@ public class Config extends AppCompatActivity implements View.OnClickListener {
         spinnerLetras.setSelection(prefs.getInt("Letra", 0));
     }
 
-    public void guardarPreferencias() {
-        SharedPreferences prefs = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
+    public void guardarPreferencias(SharedPreferences prefs) {
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putBoolean("Primera", false);
         editor.putString("Nom", editTextNombre.getText().toString());
         if (radioButtonA1.isChecked()) {
             editor.putBoolean("A1", true);
@@ -76,7 +66,7 @@ public class Config extends AppCompatActivity implements View.OnClickListener {
             i.putExtra("A2", radioButtonA2.isChecked());
             i.putExtra("Color", spinnerColor.getSelectedItemPosition());
             i.putExtra("Letra", spinnerLetras.getSelectedItemPosition());
-            guardarPreferencias();
+            guardarPreferencias(prefs);
             Vibrator vib = (Vibrator) getSystemService(getApplicationContext().VIBRATOR_SERVICE);
             vib.vibrate(3000);
             startActivity(i);

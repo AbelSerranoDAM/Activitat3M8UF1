@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
             Cursor c1 = db.rawQuery(" SELECT p.nombre, h.cod_modulo, h.horario_inicio, h.horario_fin  " +
                     "FROM profesor AS p, modulos AS m, horario AS h WHERE p.id_profesor=m.id_profesor " +
                     "AND h.cod_modulo=m.cod_modulo AND (select strftime('%H:%M:%S', datetime('now'),'+1 hour')) " +
-                    "BETWEEN h.horario_inicio AND h.horario_fin AND h.dia_semana=(select strftime('%d', datetime('now'),'-1 day')) " +
+                    "BETWEEN h.horario_inicio AND h.horario_fin AND h.dia_semana=(select strftime('%w')) " +
                     "AND h.grupo='A1' GROUP BY p.nombre", null);
             if (c1.moveToFirst()) {
                 do {
@@ -206,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
             Cursor c2 = db.rawQuery(" SELECT p.nombre, h.cod_modulo, h.horario_inicio, h.horario_fin  " +
                     "FROM profesor AS p, modulos AS m, horario AS h WHERE p.id_profesor=m.id_profesor " +
                     "AND h.cod_modulo=m.cod_modulo AND (select strftime('%H:%M:%S', datetime('now'),'+1 hour')) " +
-                    "BETWEEN h.horario_inicio AND h.horario_fin AND h.dia_semana=(select strftime('%d', datetime('now'),'-1 day')) " +
+                    "BETWEEN h.horario_inicio AND h.horario_fin AND h.dia_semana=(select strftime('%w')) " +
                     "AND h.grupo='A2' GROUP BY p.nombre", null);
             if (c2.moveToFirst()) {
                 do {
@@ -225,15 +225,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 
     public boolean onOptionsItemSelected(MenuItem menuItem) {
-        Intent i = new Intent(this, Config_ajustes.class);
+        Intent i = new Intent(this, Config.class);
         switch (menuItem.getItemId()) {
             case R.id.ajustes:
                 startActivity(i);
@@ -241,10 +241,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
-    public void onDestroy()
-    {
 
-    }
 }
 
 
